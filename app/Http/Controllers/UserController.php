@@ -15,7 +15,8 @@ class UserController extends Controller
  */
     public function index(): Collection
     {
-        $users = User::all();
+        // get elment from cache insted of each time call database minimize query to database
+        $users = settings('users');
         return $users;
     
     }
@@ -27,8 +28,6 @@ class UserController extends Controller
     public function show($userid)
     {
         $user = User::with('orders')->findorfail($userid);
-
-        
 
         return $user;
     }
