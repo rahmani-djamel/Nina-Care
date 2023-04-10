@@ -51,4 +51,25 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        foreach ($filters as $field => $value) {
+            switch ($field) {
+                case 'name':
+                case 'email':
+                case 'age':
+                case 'language_proficiency':
+                case 'location':
+                case 'role':
+   
+                $query->where($field, $value);
+                    break;
+                default:
+                    // unsupported filter field, ignore it
+                    break;
+            }
+        }
+        return $query;
+    }
 }
