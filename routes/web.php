@@ -17,9 +17,11 @@ Route::namespace('App\Http\Controllers')->group(function() {
 
     Route::get('/', [UserController::class, 'index']);
 
+    Route::get('/filter', [UserController::class, 'filter']);
+
+
     Route::get('/{userid}', [UserController::class, 'show']);
 
-    Route::get('/filter', [UserController::class, 'filter']);
 
 
 

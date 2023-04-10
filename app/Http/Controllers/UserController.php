@@ -26,7 +26,11 @@ class UserController extends Controller
  */
     public function show($userid)
     {
-        # code...
+        $user = User::with('orders')->findorfail($userid);
+
+        
+
+        return $user;
     }
 
     /**
@@ -34,9 +38,18 @@ class UserController extends Controller
  * 
  * @return User Static we can make it dynamique too just for demo purposes use .
  */
-public function filter()
-{
-    # code...
-}
+    public function filter()
+    {
+        // you can uncoment key age to add filter also by age this is  just demo example
+        $filters = [
+         //   'age' => 30,    
+            'location' => 'New York',
+            'language_proficiency' => 'English',
+        ];
+        
+        $users = User::filter($filters)->get();
+
+        return $users;
+    }
 
 }
