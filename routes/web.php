@@ -15,12 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 Route::namespace('App\Http\Controllers')->group(function() {
 
-    Route::get('/', [UserController::class, 'index']);
+    Route::prefix('user')->as('user.')->group(function() {
 
-    Route::get('/filter', [UserController::class, 'filter']);
+        Route::get('/', [UserController::class, 'index'])->name('index'); // /user/ route for show all users
+
+        Route::get('/filter', [UserController::class, 'filter'])->name('filter'); // /user/filter  route for filtering
+    
+    
+        Route::get('/{userid}', [UserController::class, 'show'])->name('show'); // /user/1  route for get user orders 
+
+    });
 
 
-    Route::get('/{userid}', [UserController::class, 'show']);
 
 
 

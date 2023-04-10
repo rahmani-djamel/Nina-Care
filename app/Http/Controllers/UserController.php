@@ -40,9 +40,9 @@ class UserController extends Controller
  */
     public function filter()
     {
-        // you can uncoment key age to add filter also by age this is  just demo example
         $filters = [
-         //   'age' => 30,    
+            'role' => 'user',
+            'age' => 30,    
             'location' => 'New York',
             'language_proficiency' => 'English',
         ];
